@@ -1,0 +1,32 @@
+*{
+    color: #fcfafa;
+}
+
+.buttonPurple{
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    background-color: #645fc6;
+}
+
+.active{
+    background-color: #645fc6;
+}
+
+.content{
+    background-color: #21212d;
+}
+
+.bgMenu{
+    background-color: #2c2c38;
+}
+
+.menuBorderRigth{
+    border-right: 1px solid #30303c;
+}
+
+.menuBorderBottom{
+    border-bottom: 1px solid #30303c;
+}
