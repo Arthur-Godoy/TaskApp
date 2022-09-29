@@ -34,4 +34,23 @@ class TaskController extends Controller
         $board->save();
         return(redirect(route('board', ['id' => $board->id])));
     }
+
+    public function newTask(Request $request){
+        $task = new Task;
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->status = '0';
+        $task->board_id = $request->board_id;
+        $task->save();
+
+        foreach($request->subtasks as $subtaskRequest){
+            $subtask = new SubTask;
+            $subtask->content = $subtaskRequest;
+            $subtask->status = false;
+            $subtask->task_id = $task->id;
+            $subtask->save();
+        }
+
+        return(redirect(route('board', ['id' => $request->board_id])));
+    }
 }

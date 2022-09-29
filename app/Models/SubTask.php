@@ -8,6 +8,7 @@ use App\Models\Task;
 
 class SubTask extends Model
 {
+    protected $table = 'subtasks';
     use HasFactory;
 
     public function task(){

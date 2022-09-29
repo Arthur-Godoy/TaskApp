@@ -1,5 +1,6 @@
 *{
     color: #fcfafa;
+
 }
 
 .buttonPurple{
@@ -9,6 +10,15 @@
     border-radius: 20px;
     color: white;
     background-color: #645fc6;
+}
+
+.buttonWhite{
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    color: #645fc6;
+    background-color: #fcfafa;
 }
 
 .active{
@@ -29,4 +39,9 @@
 
 .menuBorderBottom{
     border-bottom: 1px solid #30303c;
+}
+
+.modal input,
+.modal textarea{
+    border: 2px solid rgba(128, 128, 128, 0.116);
 }
