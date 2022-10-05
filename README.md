@@ -1,5 +1,5 @@
 
-<p><img align="center" width="200px" src="https://user-images.githubusercontent.com/80718197/194120243-438e776d-21f2-4749-a481-c1bd9f96888d.png" alt="taskapp main page"></p>
+<p align="center"><img align="center" width="200px" src="https://user-images.githubusercontent.com/80718197/194120243-438e776d-21f2-4749-a481-c1bd9f96888d.png" alt="taskapp main page"></p>
 <div>
     <h5 align="center">Com o Task APP Você pode gerenciar suas tarefas do dia-a-dia, e nunca mais ficar perdido ou se esquecer de algum compromisso.</h5>
     <h5 align="center">O TaskApp oferece: </h5>
