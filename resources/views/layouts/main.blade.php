@@ -56,7 +56,8 @@
                             <span class="d-none d-sm-inline mx-1">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('dashboard')}}">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -75,11 +76,11 @@
                     <nav class="navbar bgMenu px-5 menuBorderBottom">
                         <div class="container-fluid py-3">
                             @if ($board == null)
-                            <h1 class="fs-3">Bem Vindo !</h1>
-                            <button class="addButton buttonPurple" type="button" data-bs-toggle="modal" data-bs-target="#newBoardModal"><ion-icon name="add"></ion-icon>Nova Tarefa</button>
+                                <h1 class="fs-3">Bem Vindo !</h1>
+                                <button class="addButton buttonPurple" type="button" data-bs-toggle="modal" data-bs-target="#newBoardModal"><ion-icon name="add"></ion-icon>Nova Tarefa</button>
                             @else
-                            <h1 class="fs-3">{{ $board->name }}</h1>
-                            <button class="addButton buttonPurple" type="button" data-bs-toggle="modal" data-bs-target="#newTaskModal"><ion-icon name="add"></ion-icon>Nova Tarefa</button>
+                                    <h1 class="fs-3">{{ $board->name }}</h1>
+                                    <button class="addButton buttonPurple" type="button" data-bs-toggle="modal" data-bs-target="#newTaskModal"><ion-icon name="add"></ion-icon>Nova Tarefa</button>
                             @endif
                         </div>
                     </nav>
@@ -90,6 +91,7 @@
             </div>
         </div>
     </div>
+
     <!-- ModalNewBoard -->
     <div class="modal fade" id="newBoardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -99,8 +101,7 @@
                     <form action="{{ route('boardNew') }}" method="POST">
                         @csrf
                         <label class="form-label" for="name"><small>Nome da Sessão</small></label>
-                        <input class="form-control bg-transparent text-light" type="text" name="nome" placeholder="ex: Dia-a-Dia" required>
-
+                        <input class="form-control bg-transparent text-light" type="text" name="name" placeholder="ex: Dia-a-Dia" maxlength="50" required>
                         <button type="submit" class="btn btn-primary px-4 mt-5">Criar</button>
                         <button type="button" class="btn btn-danger mt-5" data-bs-dismiss="modal">Cancelar</button>
                     </form>
@@ -109,42 +110,44 @@
         </div>
     </div><!-- EndModal -->
 
-    <!-- ModalNewTask -->
-    <div class="modal fade" id="newTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bg-dark">
-                <div class="modal-body bgMenu rounded py-3 px-4">
-                    <h5 class="py-3">Add Nova Tarefa</h5>
-                    <form action="{{ route('taskNew')}}" method="POST">
-                        @csrf
-                        <input name="board_id" type="hidden" value="{{ $board->id }}">
-                        <label class="form-label" for="title"><small>Titulo</small></label>
-                        <input class="form-control bg-transparent text-light" type="text" name="title" placeholder="ex: Tomar Café da Manhã" required>
-                        <label class="form-label mt-3" for="description"><small>Description</small></label>
-                        <textarea
-                            style="resize: none"
-                            class="form-control bg-transparent text-light"
-                            name="description" rows="5"
-                            placeholder="ex: Um bom café da manhã é a refeição mais importânte do dia, portanto é fundamental que seja tomada com calma, e seja escolhida uma refeição bem nutritiva"
-                            required
-                        ></textarea>
-                        <label class="form-label mt-3"><small>Subtarefas</small></label>
-                        <div id="subtasks">
-                            <div class="d-inline" id="id0">
-                                <input style="width: 90%" class="mt-3 form-control bg-transparent text-light d-inline" type="text" name="subtasks[]" placeholder="Ex: Fazer Café" required>
+    @if ($board != null)
+        <!-- ModalNewTask -->
+        <div class="modal fade" id="newTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                    <div class="modal-body bgMenu rounded py-3 px-4">
+                        <h5 class="py-3">Add Nova Tarefa</h5>
+                        <form action="{{ route('taskNew')}}" method="POST">
+                            @csrf
+                            <input name="board_id" type="hidden" value="{{ $board->id }}">
+                            <label class="form-label" for="title"><small>Titulo</small></label>
+                            <input class="form-control bg-transparent text-light" type="text" name="title" placeholder="ex: Tomar Café da Manhã" required>
+                            <label class="form-label mt-3" for="description"><small>Descrição</small></label>
+                            <textarea
+                                style="resize: none"
+                                class="form-control bg-transparent text-light"
+                                name="description" rows="5"
+                                placeholder="ex: Um bom café da manhã é a refeição mais importante do dia, portanto é fundamental que seja tomada com calma, e seja escolhida uma refeição bem nutritiva"
+                                required
+                            ></textarea>
+                            <label class="form-label mt-3"><small>Subtarefas</small></label>
+                            <div id="subtasksnew">
+                                <div class="d-inline" id="new0">
+                                    <input style="width: 90%" class="mt-3 form-control bg-transparent text-light d-inline" type="text" name="subtasks[]" placeholder="Ex: Fazer Café" required>
+                                </div>
+                                <div class="d-inline" id="btnnew0">
+                                    <button type="button" class="btn btn-outline d-inline btn-sm" onclick="removeSubtaskField('new0');"><ion-icon name="close" class="fs-5"></ion-icon></button>
+                                </div>
+                                <!--Filled from /public/js/subtasksFront.js-->
                             </div>
-                            <div class="d-inline" id="btnsid0">
-                                <button type="button" class="btn btn-outline d-inline btn-sm" onclick="removeSubtaskField('id0');"><ion-icon name="close" class="fs-5"></ion-icon></button>
-                            </div>
-                            <!--Filled from /public/js/subtasksFront.js-->
-                        </div>
-                        <button type="button" onclick="addSubtaskField()" class="buttonWhite w-100 mt-5">Add SubTask</button>
-                        <button type="submit" class="buttonPurple w-100 mt-5">Criar</button>
-                    </form>
+                            <button type="button" onclick="addSubtaskField('new')" class="buttonWhite w-100 mt-5">Add SubTarefa</button>
+                            <button type="submit" class="buttonPurple w-100 mt-5">Criar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div><!-- EndModal -->
+        </div><!-- EndModal -->
+    @endif
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>

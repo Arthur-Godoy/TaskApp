@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('status');
-            $table->foreignId('board_id')->unsigned();
+            $table->foreignId('board_id')->unsigned()->onDelete('cascade');
             $table->timestamps();
         });
     }

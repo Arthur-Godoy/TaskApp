@@ -1,0 +1,29 @@
+*{
+    color: #fcfafa;
+}
+
+.login{
+    margin: auto;
+    font-size: 30px;
+    margin-top: 230px;
+    margin-bottom: 40px;
+    width: 25%;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    background-color: #645fc6;
+}
+
+.login a{
+    color: #fcfafa;
+    text-decoration: none;
+}
+
+.login a:hover{
+    color: #fcfafab9;
+}
+
+.bgLp{
+    background: url(../assets/logoBg.png) #21212d top no-repeat;
+}
+
