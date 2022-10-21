@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\SubTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[TaskController::class,'index']);
-Route::get('/dashboard', [TaskController::class,'dashboard'])->middleware('auth');
-Route::get('/board/{id}',[TaskController::class,'board'])->name('board')->middleware('auth');
-Route::post('/boardNew',[TaskController::class,'newBoard'])->name('boardNew')->middleware('auth');
-Route::post('/taskNew',[TaskController::class,'newTask'])->name('taskNew')->middleware('auth');
-Route::post('/subtaskChange',[TaskController::class,'changeSubtasksStatus'])->name('changeSubtasksStatus')->middleware('auth');
-Route::delete('/deleteSubtask/{id}',[TaskController::class,'deleteSubtask'])->name('deleteSubtask')->middleware('auth');
 Route::put('editTask/{id}', [TaskController::class,'editTask'])->name('editTask')->middleware('auth');
 Route::delete('/deleteTask/{id}',[TaskController::class,'deleteTask'])->name('deleteTask')->middleware('auth');
+Route::post('/taskNew',[TaskController::class,'newTask'])->name('taskNew')->middleware('auth');
 Route::get('/dashboard', [TaskController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-Route::put('editBoard/{id}', [TaskController::class,'editBoard'])->name('editBoard')->middleware('auth');
-Route::delete('/deleteBoard/{id}',[TaskController::class,'deleteBoard'])->name('deleteBoard')->middleware('auth');
+
+Route::get('/board/{id}',[BoardController::class,'board'])->name('board')->middleware('auth');
+Route::post('/boardNew',[BoardController::class,'newBoard'])->name('boardNew')->middleware('auth');
+Route::put('editBoard/{id}', [BoardController::class,'editBoard'])->name('editBoard')->middleware('auth');
+Route::delete('/deleteBoard/{id}',[BoardController::class,'deleteBoard'])->name('deleteBoard')->middleware('auth');
+
+Route::post('/subtaskChange',[SubTaskController::class,'changeSubtasksStatus'])->name('changeSubtasksStatus')->middleware('auth');
+Route::delete('/deleteSubtask/{id}',[SubTaskController::class,'deleteSubtask'])->name('deleteSubtask')->middleware('auth');

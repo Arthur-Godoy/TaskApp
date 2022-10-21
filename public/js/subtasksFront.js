@@ -1,7 +1,7 @@
 let quant = 1;
 
 const addSubtaskField = (target) =>{
-    let subtask =`<div class="d-inline" id="${target}${quant}">
+    let subtask =  `<div class="d-inline" id="${target}${quant}">
                         <input style="width: 90%" class="mt-3 form-control bg-transparent text-light d-inline" type="text" name="subtasks[]" placeholder="Ex: Fazer Café" required>
                     </div>
                     <div class="d-inline" id="btn${target}${quant}">

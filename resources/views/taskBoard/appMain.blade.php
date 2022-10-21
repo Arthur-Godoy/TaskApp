@@ -82,7 +82,7 @@
                                     <div class="content my-2 p-2 rounded">
                                         @if ($subtask->status)
                                             <input name="subtasks[]" class="form-check-input" type="checkbox" id="flexCheckDefault" disabled checked>
-                                            <label class="text-break form-check-label text-decoration-line-through text-muted w-100" for="flexCheckDefault">
+                                            <label class="d-inline text-break form-check-label text-decoration-line-through text-muted w-100" for="flexCheckDefault">
                                                 {{ $subtask->content }}
                                             </label>
                                         @else
