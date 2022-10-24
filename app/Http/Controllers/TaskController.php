@@ -11,7 +11,11 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     public function index(){
-        return(view('welcome'));
+        if(auth()->user()){
+            return(redirect(view('dashboard')));
+        }else{
+            return(view('welcome'));
+        }
     }
 
     public function dashboard(){

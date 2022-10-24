@@ -16,24 +16,26 @@
                 <p><small class="text-muted ps-3">Aqui se pode Editar e Excluir sessões</small></p>
                 @if (sizeof($boards) != 0)
                     @foreach ($boards as $board)
-                        <div class="rounded bgMenu p-2 shadow d-flex mb-3">
-                            <h5 class="mt-1 w-75 ms-3 d-inline"><ion-icon name="bookmarks" class="me-2"></ion-icon>{{ $board->name }}</h5>
-                            <div class="w-25 d-flex flex-row-reverse">
-                                <form action="{{route('deleteBoard', ['id' => $board->id])}}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">Deletar</button>
-                                </form>
-                                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editBoardModal">Editar</button>
+                        <a class="text-decoration-none" href="{{ route('board', ['id' => $board->id]) }}">
+                            <div class="rounded bgMenu p-2 shadow d-flex mb-3">
+                                <h5 class="mt-1 w-75 ms-3 d-inline"><ion-icon name="bookmarks" class="me-2"></ion-icon>{{ $board->name }}</h5>
+                                <div class="w-25 d-flex flex-row-reverse">
+                                    <form action="{{route('deleteBoard', ['id' => $board->id])}}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">Deletar</button>
+                                    </form>
+                                    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editBoardModal">Editar</button>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                     @else
-                        <h5 class="m-5">Ainda Não tem nenhuma Sessão - <a href="/board/1">Ir para o App</a></h5>
+                        <h5 class="m-5">Ainda Não tem nenhuma Sessão - <a class="btn-show ms-0" href="{{ route('board', ['id' => '1']) }}">Ir para o App</a></h5>
                 @endif
             </div>
             <div class="mt-4 ms-2">
-                <a href="/board/1">Ir para o App</a>
+                <a class="btn-show ms-0" href="{{ route('board', ['id' => '1']) }}">Ir para o App</a>
             </div>
         </div>
         <div class="col-md-4">
