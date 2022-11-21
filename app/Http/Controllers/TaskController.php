@@ -12,9 +12,9 @@ class TaskController extends Controller
 {
     public function index(){
         if(auth()->user()){
-            return(redirect(view('dashboard')));
+            return redirect(route('dashboard'));
         }else{
-            return(view('welcome'));
+            return view('welcome');
         }
     }
 
@@ -22,7 +22,7 @@ class TaskController extends Controller
         $user = auth()->user();
         $boards = Board::all()->where('user_id', $user->id);
 
-        return(view('dashboard',['user' => $user, 'boards' => $boards]));
+        return view('dashboard',['user' => $user, 'boards' => $boards]);
     }
 
     private function changeTaskStatus($id){
