@@ -15,7 +15,7 @@
             <div class="col-md-3 col-xl-2 px-0  menuBorderRigth">
                 <div class="d-flex flex-column pt-2 min-vh-100 bgMenu">
                     <div class="ms-3 mt-2 mb-4">
-                        <a href="/" class="d-flex align-items-center text-white text-decoration-none">
+                        <a href={{route('board', ['id' => 1])}} class="d-flex align-items-center text-white text-decoration-none">
                             <ion-icon name="link" class="fs-3"></ion-icon>
                             <span class="fs-3">Task App</span>
                         </a>
