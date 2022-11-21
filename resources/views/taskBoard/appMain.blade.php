@@ -2,6 +2,12 @@
 @section('title', 'TaskApp - Board')
 
 @section('content')
+    @if(Session::has('message'))
+        <div class="alert alert-danger" role="alert">
+            {{session('message')}}
+        </div>
+    @endif
+
     @if (count($tasks) == 0)
         <div style="padding-top: 23%" class="text-center fs-2 text-muted">
             Você nao tem nenhuma tarefa para ser exibida!!
@@ -51,7 +57,7 @@
                         <div class="modal-body bgMenu rounded py-3 px-4">
                             <div class="container row">
                                 <div class="col-md-11 g-0">
-                                    <h5>{{ $task->title }}</h5>
+                                    <h5 class="text-break">{{ $task->title }}</h5>
                                 </div>
                                 <div class="dropdown col-md-1 g-0">
                                     <a href="#" class="text-white text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

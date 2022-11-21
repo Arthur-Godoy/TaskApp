@@ -26,33 +26,37 @@ class BoardController extends Controller
         }
 
         if($board == null && sizeof($boards) != 0){
-            return(redirect(route('board', ['id' => $boards[0]->id])));
+            return redirect(route('board', ['id' => $boards[0]->id]));
         }
-        return(view('taskBoard.appMain',['boards' => $boards, 'board' => $board, 'user' => $user, 'tasks' => $tasks]));
+        return view('taskBoard.appMain',['boards' => $boards, 'board' => $board, 'user' => $user, 'tasks' => $tasks]);
     }
 
     public function newBoard(Request $request){
-        $user = auth()->user();
-        $board = new Board;
-        $board->name = $request->name;
-        $board->user_id = $user->id;
-        $board->save();
-        
-        return(redirect(route('board', ['id' => $board->id])));
+        try{
+            $user = auth()->user();
+            $board = new Board;
+            $board->name = $request->name;
+            $board->user_id = $user->id;
+            $board->save();
+
+            return redirect(route('board', ['id' => $board->id]));
+        }catch(\Illuminate\Database\QueryException $e){
+            return redirect(route('board'))->with('message', 'Erro!!  Numero de caracteres excedido');
+        }
     }
 
     public function editBoard($id, Request $request){
-        $board = Board::findOrFail($id)->first();
-        $board->name = $request->name;
-        $board->update();
+            $board = Board::findOrFail($id);
+            $board->name = $request->name;
+            $board->update();
 
-        return( redirect(route('dashboard')));
+            return redirect(route('dashboard'));
     }
 
     public function deleteBoard($id){
-        Board::findOrFail($id)->first()->delete();
+        Board::findOrFail($id)->delete();
 
-        return( redirect(route('dashboard')));
+        return redirect(route('dashboard'));
     }
 
 }

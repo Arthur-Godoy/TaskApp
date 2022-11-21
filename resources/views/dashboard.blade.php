@@ -16,19 +16,20 @@
                 <p><small class="text-muted ps-3">Aqui se pode Editar e Excluir sessões</small></p>
                 @if (sizeof($boards) != 0)
                     @foreach ($boards as $board)
-                        <a class="text-decoration-none" href="{{ route('board', ['id' => $board->id]) }}">
-                            <div class="rounded bgMenu p-2 shadow d-flex mb-3">
-                                <h5 class="mt-1 w-75 ms-3 d-inline"><ion-icon name="bookmarks" class="me-2"></ion-icon>{{ $board->name }}</h5>
-                                <div class="w-25 d-flex flex-row-reverse">
-                                    <form action="{{route('deleteBoard', ['id' => $board->id])}}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Deletar</button>
-                                    </form>
-                                    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editBoardModal">Editar</button>
-                                </div>
+                        <div class="rounded bgMenu p-2 shadow d-flex mb-3">
+                            <a class="text-decoration-none mt-1 w-75 ms-3 d-inline" href="{{ route('board', ['id' => $board->id]) }}">
+                                <h5><ion-icon name="bookmarks" class="me-2"></ion-icon>{{ $board->name }}</h5>
+                            </a>
+                            <div class="w-25 d-flex flex-row">
+                                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#{{$board->name}}">Editar</button>
+                                <form action="{{route('deleteBoard', ['id' => $board->id])}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Deletar</button>
+                                </form>
                             </div>
-                        </a>
+                        </div>
+
                     @endforeach
                     @else
                         <h5 class="m-5">Ainda Não tem nenhuma Sessão - <a class="btn-show ms-0" href="{{ route('board', ['id' => '1']) }}">Ir para o App</a></h5>
@@ -50,7 +51,7 @@
 
     @foreach ($boards as $board)
         <!-- ModalEditBoard -->
-        <div class="modal fade" id="editBoardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="{{$board->name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark">
                     <div class="modal-body bgMenu rounded py-3 px-4">
@@ -60,7 +61,7 @@
                             @method('PUT')
                             <label class="form-label" for="name"><small>Nome da Sessão</small></label>
                             <input class="form-control bg-transparent text-light" type="text" value="{{ $board->name }}" name="name" maxlength="50" required>
-                            <button type="submit" class="btn btn-primary px-4 mt-5">Editar</button>
+                            <button type="submit" class="btn btn-primary px-4 mt-5">salvar</button>
                         </form>
                     </div>
                 </div>
