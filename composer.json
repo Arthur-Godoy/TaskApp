@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
-        "heroku/heroku-buildpack-php": "^225.0",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.12",
         "laravel/sanctum": "^3.0",
@@ -21,6 +20,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
+        "heroku/heroku-buildpack-php": "^225.0",
         "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
