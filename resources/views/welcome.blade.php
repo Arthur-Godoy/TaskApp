@@ -14,11 +14,11 @@
         <h5 class="mb-3">Com o Task APP Você pode gerenciar suas tarefas do dia-a-dia, e nunca mais ficar perdido ou se esquecer de algum compromisso.</h5>
         <h5 class="mb-3">O TaskApp oferece: </h5>
     </div>
-        <img class="shadow" width="700px" src="/assets/all.png" alt="taskapp main page">
+        <img class="shadow" width="700px" src="./assets/all.png" alt="taskapp main page">
     <div class="m-auto w-50 text-center">
         <h5 class="my-4">Um layout simples e intuitivo, fácil para se organizar, separando suas tarefas em etapas, e classificando-as a partir disso</h5>
     </div>
-        <img class="shadow" width="700px" src="/assets/new.png" alt="taskapp main page">
+        <img class="shadow" width="700px" src="./assets/new.png" alt="taskapp main page">
     <div class="m-auto w-50 text-center">
         <h5 class="my-4">Um metodo fácil e rápido de criar novas tarefas, e organiza-las da melhor maneira possivel. separando as tarefas em sessões personalizáveis, para cara necessidade e área da sua vida.</h5>
     </div>
