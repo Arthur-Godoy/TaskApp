@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body class="bgLp text-center">
-    <div class="login"><a href="/login">Entrar</a></div>
+    <div class="login"><a href="{{ route('login') }}">Entrar</a></div>
     <div class="m-auto w-50 text-center">
         <h5 class="mb-3">Com o Task APP Você pode gerenciar suas tarefas do dia-a-dia, e nunca mais ficar perdido ou se esquecer de algum compromisso.</h5>
         <h5 class="mb-3">O TaskApp oferece: </h5>
