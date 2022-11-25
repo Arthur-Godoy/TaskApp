@@ -21,8 +21,21 @@ class TaskController extends Controller
     public function dashboard(){
         $user = auth()->user();
         $boards = Board::all()->where('user_id', $user->id);
+        $qntTasksDone = 0;
+        $qntTasksDoing = 0;
+        $qntTasksToDo = 0;
 
-        return view('dashboard',['user' => $user, 'boards' => $boards]);
+        foreach($boards as $board){
+            if($board != null){
+                $tasks = Task::all()->where('board_id', $board->id);
+                $qntTasksDone += count($tasks->where('status', 2));
+                $qntTasksDoing += count($tasks->where('status', 1));
+                $qntTasksToDo += count($tasks->where('status', 0));
+            }
+        }
+
+        $quants = [$qntTasksToDo, $qntTasksDoing, $qntTasksDone];
+        return view('dashboard',['user' => $user, 'boards' => $boards, 'quants' => $quants]);
     }
 
     private function changeTaskStatus($id){
